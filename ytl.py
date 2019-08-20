@@ -16,6 +16,15 @@ ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--images", required=True, help="path to images directory")
 args = vars(ap.parse_args())
 '''
+
+
+#TODO: Make this into a global module available in pip3 or atelast have a setup.py
+def get_file_dir(file):
+    '''
+    Inputs to this function will be __file__
+    '''
+    return fdir =  os.path.dirname(file) +'/'
+
 def traverse_dir_and_do_func(cwd, dirs, func):
     '''
     passes params to func,
