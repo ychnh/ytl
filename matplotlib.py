@@ -1,4 +1,6 @@
 # Visual
+import math
+import matplotlib.pyplot as plt
 
 def pyplot_show_grid(images):
     ''' Displays multiple `images` in a grid shape.
@@ -23,6 +25,16 @@ def pyplot_show_grid(images):
     plt.show()
 
 def pyplot_show_list(images):
+    ''' Shows multiple large images in a single column
+    * images: list of numpy/PIL images
+    '''
+    N = len(images)
+    plt.figure(figsize=(10,25))
+    for i,img in enumerate(images):
+        axis = plt.subplot(N,1,i+1)
+        plt.imshow(img)
+
+def pyplot_show_images(images):
     ''' Shows multiple large images in a single column
     * images: list of numpy/PIL images
     '''
