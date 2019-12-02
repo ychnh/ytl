@@ -28,6 +28,17 @@ def hook_fn(m, i, o):
         #model.register_backward_hook(hook_fn)
 '''
 
+def listdir(path,sort_time=True, files_only=False):
+    if files_only:
+        X = [s for s in os.listdir(path) if os.path.isfile(os.path.join(path, s))]
+    else:
+        X = [s for s in os.listdir(path)]
+
+    if sort_time:
+        X.sort(key=lambda s: os.path.getmtime(os.path.join(path, s)), reverse=False)
+
+    return X
+
 
 def true_path(path):
     try:
