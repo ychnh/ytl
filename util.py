@@ -54,9 +54,13 @@ def maxmin(title,t):
         return ','.join( ['  ', title, ':', ''])
 
 # Directory
-def check_and_make_dir(directory):
+def check_and_make_dir(directory, ensure_empty=False):
     if not os.path.exists(directory):
         os.makedirs(directory)
+
+    if ensure_empty:
+        assert len(os.listdir(directory)==0,'involved directory needs to be empty but is not empty'
+
 
 # Load Save
 
