@@ -65,10 +65,13 @@ def save_obj(obj, name):
         pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
 
 def load_obj(name, default=None):
-    if os.path.exists(name):
-        with open(name, 'rb') as f:
-            return pickle.load(f)
-    else:
+    try:
+        if os.path.exists(name):
+            with open(name, 'rb') as f:
+                return pickle.load(f)
+        else:
+            return default
+    except:
         return default
 
 def summary(model):
