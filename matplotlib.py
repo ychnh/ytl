@@ -43,7 +43,9 @@ def pyplot_show_images(images):
     for i,img in enumerate(images):
         axis = plt.subplot(N,1,i+1)
         plt.imshow(img)
-        
-def pyplot_histogram(X, bins, title):                                                                                                                                            
-    plt.hist(X, normed=True, bins=bins)                                                                                                                                          
-    plt.ylabel('Title')  
+     
+def pyplot_histogram(X, bins=3, ylabel='',xlabel='', normed=False):
+    plt.hist(X, normed=normed, bins=bins)
+    plt.ylabel(ylabel)
+    plt.xlabel(xlabel)
+
