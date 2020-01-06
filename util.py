@@ -9,6 +9,12 @@ import torch
 import time
 import os
 
+def progress_print(text):
+    text = str(text)
+    print(' '*len(text), end='\r')
+    print(text, end='\r')
+
+
 '''
 def hook_fn(m, i, o):
             print(m)
@@ -59,11 +65,9 @@ def check_and_make_dir(directory, ensure_empty=False):
         os.makedirs(directory)
 
     if ensure_empty:
-        assert len(os.listdir(directory)==0,'involved directory needs to be empty but is not empty'
-
+        assert len(os.listdir(directory))==0, 'New directory needs to be empty'
 
 # Load Save
-
 def save_obj(obj, name):
     with open(name, 'wb') as f:
         pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
