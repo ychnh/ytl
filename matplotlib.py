@@ -45,7 +45,12 @@ def pyplot_show_images(images):
         plt.imshow(img)
      
 def pyplot_histogram(X, bins=3, ylabel='',xlabel='', normed=False):
-    plt.hist(X, normed=normed, bins=bins)
+    ret = plt.hist(X, normed=normed, bins=bins)
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
+    return ret
 
+def pyplot_graph(X, ylabel='', xlabel=''):
+    plt.plot(X)
+    plt.ylabel(ylabel)
+    plt.xlabel(xlabel)

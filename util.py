@@ -1,6 +1,5 @@
 import dill as pickle
 import math
-from matplotlib import pyplot as plt
 import datetime
 from torch import tensor
 import sys
@@ -8,6 +7,11 @@ import numpy as np
 import torch
 import time
 import os
+from functools import reduce
+import operator
+
+def prod(L):
+    return reduce(operator.mul, L, 1)
 
 def progress_print(text):
     text = str(text)
