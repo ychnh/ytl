@@ -11,7 +11,7 @@ def pyplot_show_grid(images):
     C = math.ceil(L/R)
     print('diplaying',L, 'images:',R,'x',C)
 
-    plt.figure(figsize=(12,12))
+    plt.figure(figsize=(25,25))
     idx = 0
     f, axarr = plt.subplots(R,C)
     for i in range(R):
@@ -43,6 +43,14 @@ def pyplot_show_images(images):
     for i,img in enumerate(images):
         axis = plt.subplot(N,1,i+1)
         plt.imshow(img)
+
+def pyplot_show_image(img):
+    ''' Shows multiple large images in a single column
+    * images: list of numpy/PIL images
+    '''
+    #plt.figure(figsize=(10,25))
+    plt.imshow(img)
+
      
 def pyplot_histogram(X, bins=3, ylabel='',xlabel='', normed=False):
     ret = plt.hist(X, normed=normed, bins=bins)
