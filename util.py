@@ -27,8 +27,10 @@ class udict(dict):
 def prod(L):
     return reduce(operator.mul, L, 1)
 
-def progress_print(text):
-    text = str(text)
+from functools import reduce
+def progress_print(*text):
+    stradd = lambda a,b: str(a)+' '+str(b) 
+    text = reduce(stradd, text)
     print(' '*len(text), end='\r')
     print(text, end='\r')
 
