@@ -97,7 +97,8 @@ def load_obj(name, default=None):
                 return pickle.load(f)
         else:
             return default
-    except:
+    except Exception as e:
+        print(e)
         return default
 
 def summary(model):
