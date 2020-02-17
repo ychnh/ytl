@@ -9,7 +9,7 @@ def get_intervals(Subline):
         if s == first:
             i.append(s)
         elif s == last:
-        i.append(s)
+            i.append(s)
             intervals.append(i)
         elif s - i[-1]!= 1:
             intervals.append(i)

@@ -10,6 +10,20 @@ import os
 from functools import reduce
 import operator
 
+
+from copy import deepcopy
+class udict(dict):
+    def __init__(self, mapping=(), def_val=None, **kwargs):
+        super(udict, self).__init__(mapping, **kwargs)
+        self.def_val = def_val
+    def __getitem__(self, k):
+        if k in self:
+            return super(udict, self).get(k)
+        else:
+            dv= deepcopy(self.def_val)
+            self[k] = dv
+            return dv
+
 def prod(L):
     return reduce(operator.mul, L, 1)
 
