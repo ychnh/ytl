@@ -10,6 +10,19 @@ import os
 from functools import reduce
 import operator
 
+class timebool:
+    def __init__(self, timebox, j=0):
+        self.j = j
+        self.timebox = timebox
+
+    def true_til(self,j):
+        self.j = j
+
+    def __bool__(self):
+        j = self.j
+        i = self.timebox[0]
+        if (j-i) > 0:
+            return True
 
 from copy import deepcopy
 class udict(dict):
