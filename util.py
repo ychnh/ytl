@@ -11,18 +11,23 @@ from functools import reduce
 import operator
 
 class timebool:
-    def __init__(self, timebox, j=0):
-        self.j = j
+    def __init__(self, timebox):
         self.timebox = timebox
+        self.i, self.j = 0,0
 
-    def true_til(self,j):
-        self.j = j
+    def set(self,i,j):
+        self.i, self.j = i, j
+
+    def reset(self):
+        self.i, self.j = 0,0
 
     def __bool__(self):
-        j = self.j
-        i = self.timebox[0]
-        if (j-i) > 0:
+        i,j, = self.i, self.j
+        t = self.timebox[0]
+        if i<=t and t<j:
             return True
+        else:
+            return False
 
 from copy import deepcopy
 class udict(dict):
