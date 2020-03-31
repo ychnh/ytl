@@ -5,7 +5,14 @@ red = [255,0,0]
 green = [0,255,0]
 blue = [0,0,255]
 
+
+def validate(src,r,c):
+    R,C,_ = src.shape
+    return 0<=r<R and 0<=c<C
+
 def point( src, r,c, clr):
+    if not validate(src,r,c): return None
+
     r,c, = int(r), int(c)
     if isinstance(src, torch.Tensor):
         src[r,c] = torch.ByteTensor(clr)
@@ -61,7 +68,7 @@ def square( src, r,c, clr=red):
     point(src, r+1,c+1, clr)
 
 def thick_point(src,r,c,clr=red):
-    K = 5 # Ideal if K is odd
+    K = 15 # Ideal if K is odd
     k = K//2
     for i in range(math.ceil(K/2)):
         line(src,r+i,c-k, K,'col', clr)
