@@ -52,7 +52,7 @@ def build_innotater(filepaths, boxes, width, height):
     return inn
 
 
-S = 20
+S = 10
 def shrinkpoints(bpoints):
     _shrinkpoints = np.zeros( bpoints.shape ) 
     L = bpoints.shape[0]
@@ -70,7 +70,10 @@ def blowpoints(points):
     for l in range(L):
         for n in range(N):
             a,b,al,bl = points[l,n,:]
-            _blowpoints[l,n,:] = [a-S//2,b-S//2,S,S]
+            if a==0 and b==0:
+                _blowpoints[l,n,:] = [0,0,0,0]
+            else:
+                _blowpoints[l,n,:] = [a-S//2,b-S//2,S,S]
     return _blowpoints
 
 def rcboxes(crboxes):
