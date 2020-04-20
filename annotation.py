@@ -60,7 +60,10 @@ def shrinkpoints(bpoints):
     for l in range(L):
         for n in range(N):
             a,b,al,bl = bpoints[l,n,:]
-            _shrinkpoints[l,n,:] = [a+S//2,b+S//2,0,0]
+            if a==0 and b==0:
+                _shrinkpoints[l,n,:] = [0,0,0,0]
+            else:
+                _shrinkpoints[l,n,:] = [a+S//2,b+S//2,0,0]
     return _shrinkpoints
 
 def blowpoints(points):
