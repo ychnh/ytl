@@ -3,7 +3,6 @@ from jupyter_innotater import *
 import numpy as np, os
 import glob
 from jupyter_innotater import *
-import numpy as np 
 from ytil import util
 from os.path import join
 
@@ -25,8 +24,8 @@ class Annotator:
         return rcboxes( self._crboxes )
 
     def set_points(self, rcpoints):
-        crpoints = crboxes(rcpoints)
-        self._crboxes = blowpoints(crpoints)
+        crpts = crpoints(rcpoints)
+        self._crboxes = blowpoints(crpts)
 
     def points(self):
         return shrinkpoints( rcboxes( self._crboxes ) )
@@ -54,30 +53,52 @@ def build_innotater(filepaths, boxes, width, height):
 
 S = 10
 def shrinkpoints(bpoints):
-    _shrinkpoints = np.zeros( bpoints.shape ) 
     L = bpoints.shape[0]
     N = bpoints.shape[1]
+    _shrinkpoints = np.zeros( (L,N,2) ) 
     for l in range(L):
         for n in range(N):
             a,b,al,bl = bpoints[l,n,:]
-            if a==0 and b==0:
-                _shrinkpoints[l,n,:] = [0,0,0,0]
-            else:
-                _shrinkpoints[l,n,:] = [a+S//2,b+S//2,0,0]
+            if a==0 and b==0: # blank annotation
+                _shrinkpoints[l,n,:] = [0,0]
+            elif a!=0 and b!=0 and al==0 and bl==0: # Plain point annotation
+                _shrinkpoints[l,n,:] = [a,b]
+            else: # existing display sqs
+                _shrinkpoints[l,n,:] = [a+S//2,b+S//2]
     return _shrinkpoints
 
 def blowpoints(points):
-    _blowpoints = np.zeros( points.shape ) 
     L = points.shape[0]
     N = points.shape[1]
+    _blowpoints = np.zeros( (L,N,4) ) 
     for l in range(L):
         for n in range(N):
-            a,b,al,bl = points[l,n,:]
+            a,b = points[l,n,:]
             if a==0 and b==0:
                 _blowpoints[l,n,:] = [0,0,0,0]
             else:
                 _blowpoints[l,n,:] = [a-S//2,b-S//2,S,S]
     return _blowpoints
+
+def rcpoints(crpoints):
+    _rcboxes = np.zeros( crpoints.shape ) 
+    L = crpoints.shape[0]
+    N = crpoints.shape[1]
+    for l in range(L):
+        for n in range(N):
+            c,r = crpoints[l,n,:]
+            _rcboxes[l,n,:] = [r,c]
+    return _rcboxes
+
+def crpoints(rcpoints):
+    _crboxes = np.zeros( rcpoints.shape ) 
+    L = rcpoints.shape[0]
+    N = rcpoints.shape[1]
+    for l in range(L):
+        for n in range(N):
+            r,c = rcpoints[l,n,:]
+            _crboxes[l,n,:] = [c,r]
+    return _crboxes
 
 def rcboxes(crboxes):
     _rcboxes = np.zeros( crboxes.shape ) 

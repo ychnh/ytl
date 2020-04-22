@@ -17,13 +17,12 @@ ap.add_argument("-i", "--images", required=True, help="path to images directory"
 args = vars(ap.parse_args())
 '''
 
-
 #TODO: Make this into a global module available in pip3 or atelast have a setup.py
 def get_file_dir(file):
     '''
     Inputs to this function will be __file__
     '''
-    return fdir =  os.path.dirname(file) +'/'
+    return os.path.dirname(file) +'/'
 
 def traverse_dir_and_do_func(cwd, dirs, func):
     '''
@@ -73,12 +72,14 @@ def printFileByLine(filename):
     f.close()
 
 
+'''
 def fixEncoding(filename):
     with codecs.open(filename, 'r', encoding='iso-8859-15') as f:
         text = f.read()
     # process Unicode text
     with codecs.open(filename, 'w', encoding='utf8') as f:
         f.write(text)
+'''
 
 def filesInDir(dir):
     files = os.listdir(dir)
