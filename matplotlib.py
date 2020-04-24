@@ -18,7 +18,6 @@ def pyplot_show_grid(images):
     for i in range(R):
         for j in range(C):
             arrIdx = C*i+j
-            print(arrIdx)
             if (arrIdx >= L):
                 break
             else:
