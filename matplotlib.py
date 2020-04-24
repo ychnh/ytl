@@ -1,6 +1,7 @@
 # Visual
 import math
 import matplotlib.pyplot as plt
+import numpy as np
 
 def pyplot_show_grid(images):
     ''' Displays multiple `images` in a grid shape.
@@ -17,9 +18,11 @@ def pyplot_show_grid(images):
     for i in range(R):
         for j in range(C):
             arrIdx = C*i+j
+            print(arrIdx)
             if (arrIdx >= L):
                 break
-            axarr[i,j].imshow(images[R*i+j])
+            else:
+                axarr[i,j].imshow(images[arrIdx])
             idx+=1
 
     plt.show()
