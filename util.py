@@ -10,6 +10,9 @@ import os
 from functools import reduce
 import operator
 
+def clamp(x,a,b):
+    return max(a, min(x,b) )
+
 class timebool:
     def __init__(self, timebox):
         self.timebox = timebox
