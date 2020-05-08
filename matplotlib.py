@@ -3,16 +3,16 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 
-def pyplot_show_grid(images):
+def pyplot_show_grid(images, save_path=None):
     ''' Displays multiple `images` in a grid shape.
     * images: a list of numpy/PIL images
     '''
     L = len(images)
     R = math.floor( math.sqrt(L) )
     C = math.ceil(L/R)
-    print('diplaying',L, 'images:',R,'x',C)
+    #print('diplaying',L, 'images:',R,'x',C)
 
-    plt.figure(figsize=(25,25))
+    fig = plt.figure(figsize=(25,25))
     idx = 0
     f, axarr = plt.subplots(R,C)
     for i in range(R):
@@ -24,7 +24,11 @@ def pyplot_show_grid(images):
                 axarr[i,j].imshow(images[arrIdx])
             idx+=1
 
-    plt.show()
+    if save_path == None:
+        plt.show()
+    else:
+        plt.savefig(save_path, bbox_inches='tight')
+        plt.close(fig)
 
 def pyplot_show_list(images):
     ''' Shows multiple large images in a single column
