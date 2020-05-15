@@ -48,12 +48,16 @@ def tline(src, r,c, l, dir, clr=red, k=2):
             line(src,r+i,c,l,dir,clr)
 
 
-def bbox(src, r,c, lr, lc, clr=red, k=2):
+def bbox(src, r,c, lr, lc, clr=red, k=2, fill=False):
     r_,c_ = r+lr, c+lc
     tline(src, r,c, lr, 'row', clr, k)
     tline(src, r,c_, lr, 'row', clr, k)
     tline(src, r,c, lc, 'col', clr, k)
     tline(src, r_,c, lc+1, 'col', clr, k)
+
+    if fill:
+        for dr in range(r,lr):
+            tline(src, dr,c, lc, 'col', clr, k)
 
 def square( src, r,c, clr=red):
     point(src, r-1,c-1, clr)
