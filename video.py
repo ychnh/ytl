@@ -5,6 +5,13 @@ import cv2
 import torch
 import numpy as np
 
+
+def minsec(frm, fps=30):
+    return ( frm/fps ) // 60, ( frm/fps ) % 60
+
+def frm(m,s,fps=30):
+    return int( fps*(m*60+s) )
+
 class ImageDirectory:
     def __init__(self, path, ext='.png', chan=True):
         self.chan = chan

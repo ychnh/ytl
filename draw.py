@@ -56,8 +56,8 @@ def bbox(src, r,c, lr, lc, clr=red, k=2, fill=False):
     tline(src, r_,c, lc+1, 'col', clr, k)
 
     if fill:
-        for dr in range(r,lr):
-            tline(src, dr,c, lc, 'col', clr, k)
+        for dr in range(r,r_):
+            line(src, dr,c,lc, 'col', clr)
 
 def square( src, r,c, clr=red):
     point(src, r-1,c-1, clr)
