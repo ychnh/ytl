@@ -10,6 +10,25 @@ import os
 from functools import reduce
 import operator
 
+import torch
+import gc
+
+def cuda_mem():
+    total = 0
+    for obj in gc.get_objects():
+        try:
+            if torch.is_tensor(obj) or (hasattr(obj, 'data') and torch.is_tensor(obj.data)):
+                #print(type(obj), obj.size())
+                total+= obj.element_size()*obj.nelement()
+                #print( obj.element_size(), obj.nelement(), obj.size() )
+        except:
+            pass
+    return total/1000000
+
+def intervals(L):
+    assert len(L) > 1
+    return list(zip( L,L[1:] ))
+
 def clamp(x,a,b):
     return max(a, min(x,b) )
 

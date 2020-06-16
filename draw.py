@@ -1,6 +1,10 @@
 import math
 import torch
 
+# have some conversion function to handle various types an
+# draw diagonal line
+
+
 red = [255,0,0]
 green = [0,255,0]
 blue = [0,0,255]

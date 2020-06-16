@@ -53,6 +53,9 @@ class ImageDirectory:
         return len(self.files)
 
         
+
+from time import time
+
 class ImageSequence:
     def __init__(self, path):
         self.path = path
@@ -72,17 +75,20 @@ class ImageSequence:
             
             cap = cv2.VideoCapture(self.path)
             cap.set(cv2.CAP_PROP_POS_FRAMES, start)
+
             for i in range(start, stop):
                 ret, frame = cap.read()
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 frame = frame[s_R, s_C, s_chan].astype('uint8')
                 sequence.append( torch.ByteTensor(frame))              
-            
+
+
         else:
             print('Invalid get parameters. Need 4 slices for batch, channel, R, C')                     
             print(key)
         
         ret_img = torch.stack(sequence)
+
         if not isinstance(s_chan, slice): 
             ret_img = ret_img.squeeze(2)
         if not isinstance(s_frame, slice):
