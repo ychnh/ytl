@@ -1,7 +1,7 @@
 import time
 import datetime
 
-class pgrs:
+class prgs:
     def __init__(self, I):
         self.DISP_LEN = 15
         self.L = I
@@ -32,11 +32,14 @@ class pgrs:
         
         print(per+'|'+prg+'| '+c_cnt+'/'+t_cnt + ' [' + str_remain +' | '+str_avgt+']', end='\r')
         
+        if self.i == L:
+            print()
+
         self.ta = time.time()
         self.elapsed_t += t
         self.i+=1
+
         return next(self.I)
-    
     def __len__(self):
         return len(self.I)
     
