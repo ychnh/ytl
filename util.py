@@ -120,7 +120,7 @@ def maxmin(title,t):
         return ','.join( ['  ', title, ':', ''])
 
 # Directory
-def check_and_make_dir(directory, ensure_empty=False):
+def try_makedirs(directory, ensure_empty=False):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
